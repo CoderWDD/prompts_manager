@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(npm run lint)",
+      "Bash(timeout 15 npm run dev)",
+      "Bash(npm run dev:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  }
+}
