@@ -39,7 +39,7 @@ export const PromptViewer = ({ prompt, isOpen, onClose, onEdit }: PromptViewerPr
         document.body.removeChild(textArea);
         setCopySuccess(true);
         setTimeout(() => setCopySuccess(false), 2000);
-      } catch (fallbackError) {
+      } catch {
         alert('复制失败，请手动选择内容复制');
       }
     }
@@ -125,16 +125,17 @@ export const PromptViewer = ({ prompt, isOpen, onClose, onEdit }: PromptViewerPr
           <div className="prose prose-lg max-w-none">
             <ReactMarkdown
               components={{
-                h1: ({node, ...props}) => <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-xl font-medium mb-3 text-gray-900 dark:text-gray-100" {...props} />,
-                h4: ({node, ...props}) => <h4 className="text-lg font-medium mb-2 text-gray-900 dark:text-gray-100" {...props} />,
-                p: ({node, ...props}) => <p className="mb-4 leading-relaxed text-gray-700 dark:text-gray-300" {...props} />,
-                ul: ({node, ...props}) => <ul className="list-disc list-outside mb-4 ml-6 space-y-2 text-gray-700 dark:text-gray-300" {...props} />,
-                ol: ({node, ...props}) => <ol className="list-decimal list-outside mb-4 ml-6 space-y-2 text-gray-700 dark:text-gray-300" {...props} />,
-                li: ({node, ...props}) => <li className="mb-1" {...props} />,
-                code: ({node, inline, className, children, ...props}: any) => 
-                  inline ? (
+                h1: (props) => <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100" {...props} />,
+                h2: (props) => <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100" {...props} />,
+                h3: (props) => <h3 className="text-xl font-medium mb-3 text-gray-900 dark:text-gray-100" {...props} />,
+                h4: (props) => <h4 className="text-lg font-medium mb-2 text-gray-900 dark:text-gray-100" {...props} />,
+                p: (props) => <p className="mb-4 leading-relaxed text-gray-700 dark:text-gray-300" {...props} />,
+                ul: (props) => <ul className="list-disc list-outside mb-4 ml-6 space-y-2 text-gray-700 dark:text-gray-300" {...props} />,
+                ol: (props) => <ol className="list-decimal list-outside mb-4 ml-6 space-y-2 text-gray-700 dark:text-gray-300" {...props} />,
+                li: (props) => <li className="mb-1" {...props} />,
+                code: ({ children, ...props }) => {
+                  const isInline = !String(children).includes('\n');
+                  return isInline ? (
                     <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-sm font-mono text-gray-800 dark:text-gray-200" {...props}>
                       {children}
                     </code>
@@ -142,16 +143,17 @@ export const PromptViewer = ({ prompt, isOpen, onClose, onEdit }: PromptViewerPr
                     <code className="block bg-gray-100 dark:bg-gray-700 p-4 rounded text-sm font-mono text-gray-800 dark:text-gray-200 overflow-x-auto" {...props}>
                       {children}
                     </code>
-                  ),
-                pre: ({node, ...props}) => <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded mb-4 overflow-x-auto" {...props} />,
-                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic mb-4 text-gray-600 dark:text-gray-400" {...props} />,
-                strong: ({node, ...props}) => <strong className="font-semibold text-gray-900 dark:text-gray-100" {...props} />,
-                em: ({node, ...props}) => <em className="italic text-gray-700 dark:text-gray-300" {...props} />,
-                table: ({node, ...props}) => <table className="w-full border-collapse border border-gray-300 dark:border-gray-600 mb-4" {...props} />,
-                th: ({node, ...props}) => <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 bg-gray-50 dark:bg-gray-800 font-semibold text-left" {...props} />,
-                td: ({node, ...props}) => <td className="border border-gray-300 dark:border-gray-600 px-4 py-2" {...props} />,
-                hr: ({node, ...props}) => <hr className="my-6 border-gray-300 dark:border-gray-600" {...props} />,
-                a: ({node, ...props}) => <a className="text-blue-600 dark:text-blue-400 hover:underline" {...props} />,
+                  );
+                },
+                pre: (props) => <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded mb-4 overflow-x-auto" {...props} />,
+                blockquote: (props) => <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic mb-4 text-gray-600 dark:text-gray-400" {...props} />,
+                strong: (props) => <strong className="font-semibold text-gray-900 dark:text-gray-100" {...props} />,
+                em: (props) => <em className="italic text-gray-700 dark:text-gray-300" {...props} />,
+                table: (props) => <table className="w-full border-collapse border border-gray-300 dark:border-gray-600 mb-4" {...props} />,
+                th: (props) => <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 bg-gray-50 dark:bg-gray-800 font-semibold text-left" {...props} />,
+                td: (props) => <td className="border border-gray-300 dark:border-gray-600 px-4 py-2" {...props} />,
+                hr: (props) => <hr className="my-6 border-gray-300 dark:border-gray-600" {...props} />,
+                a: (props) => <a className="text-blue-600 dark:text-blue-400 hover:underline" {...props} />,
               }}
             >
               {prompt.content}

@@ -4,7 +4,6 @@ import { useAppStore } from '@/store';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, Grid, List, Settings, Download, Upload, SortAsc, SortDesc } from 'lucide-react';
-import { useState } from 'react';
 
 interface MainHeaderProps {
   onImport: () => void;

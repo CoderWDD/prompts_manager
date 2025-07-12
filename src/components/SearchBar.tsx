@@ -171,7 +171,7 @@ export const SearchBar = ({ onNewPrompt, onImport, onExport, onSettings }: Searc
               <select
                 value={searchFilters.sortBy}
                 onChange={(e) => updateSearchFilters({ 
-                  sortBy: e.target.value as any 
+                  sortBy: e.target.value as 'createdAt' | 'updatedAt' | 'title' | 'contentLength'
                 })}
                 className="h-9 rounded-md border border-input bg-background px-3 py-1 text-sm"
               >
@@ -184,7 +184,7 @@ export const SearchBar = ({ onNewPrompt, onImport, onExport, onSettings }: Searc
               <select
                 value={searchFilters.sortOrder}
                 onChange={(e) => updateSearchFilters({ 
-                  sortOrder: e.target.value as any 
+                  sortOrder: e.target.value as 'asc' | 'desc'
                 })}
                 className="h-9 rounded-md border border-input bg-background px-3 py-1 text-sm"
               >

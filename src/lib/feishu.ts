@@ -91,7 +91,6 @@ export class FeishuWebhookService {
 
   private formatCardMessage(prompt: Prompt, action: '新建' | '更新'): FeishuMessage {
     const icon = action === '新建' ? '✨' : '🔄';
-    const color = action === '新建' ? 'green' : 'blue';
     
     return {
       msg_type: 'post',

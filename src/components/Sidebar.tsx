@@ -4,17 +4,14 @@ import { useState } from 'react';
 import { useAppStore } from '@/store';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Folder, Plus, Tag, FolderOpen, Hash } from 'lucide-react';
+import { Folder, Plus, FolderOpen, Hash } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SidebarProps {
   onNewPrompt: () => void;
-  onNewFolder: () => void;
-  onNewTag: () => void;
 }
 
-export const Sidebar = ({ onNewPrompt, onNewFolder, onNewTag }: SidebarProps) => {
+export const Sidebar = ({ onNewPrompt }: SidebarProps) => {
   const { 
     folders, 
     tags, 

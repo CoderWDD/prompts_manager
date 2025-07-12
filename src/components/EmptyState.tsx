@@ -1,6 +1,5 @@
 'use client';
 
-import { Prompt } from '@/types';
 import { FileText, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 

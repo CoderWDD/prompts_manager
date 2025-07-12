@@ -282,7 +282,7 @@ export const useAppStore = create<AppState>()(
           
           // Convert date strings back to Date objects
           if (parsed.state.prompts) {
-            parsed.state.prompts = parsed.state.prompts.map((prompt: any) => ({
+            parsed.state.prompts = parsed.state.prompts.map((prompt: Prompt) => ({
               ...prompt,
               createdAt: new Date(prompt.createdAt),
               updatedAt: new Date(prompt.updatedAt)
@@ -290,7 +290,7 @@ export const useAppStore = create<AppState>()(
           }
           
           if (parsed.state.folders) {
-            parsed.state.folders = parsed.state.folders.map((folder: any) => ({
+            parsed.state.folders = parsed.state.folders.map((folder: Folder) => ({
               ...folder,
               createdAt: new Date(folder.createdAt),
               updatedAt: new Date(folder.updatedAt)
@@ -298,7 +298,7 @@ export const useAppStore = create<AppState>()(
           }
           
           if (parsed.state.tags) {
-            parsed.state.tags = parsed.state.tags.map((tag: any) => ({
+            parsed.state.tags = parsed.state.tags.map((tag: Tag) => ({
               ...tag,
               createdAt: new Date(tag.createdAt)
             }));

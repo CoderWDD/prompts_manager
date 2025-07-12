@@ -17,15 +17,11 @@ import { readFileAsText, downloadFile } from '@/lib/storage';
 export default function Home() {
   const {
     prompts,
-    folders,
-    tags,
     searchFilters,
     viewMode,
     settings,
     addPrompt,
     updatePrompt,
-    addFolder,
-    addTag,
     exportData,
     importData
   } = useAppStore();
@@ -110,8 +106,6 @@ export default function Home() {
   };
 
   const handleSavePrompt = async (promptData: PromptFormData) => {
-    const isUpdate = !!editingPrompt;
-    
     if (editingPrompt) {
       updatePrompt(editingPrompt.id, promptData);
       
@@ -147,20 +141,6 @@ export default function Home() {
     }
   };
 
-  const handleNewFolder = () => {
-    const name = prompt('请输入文件夹名称:');
-    if (name && name.trim()) {
-      addFolder({ name: name.trim() });
-    }
-  };
-
-  const handleNewTag = () => {
-    const name = prompt('请输入标签名称:');
-    if (name && name.trim()) {
-      addTag({ name: name.trim() });
-    }
-  };
-
   const handleExport = () => {
     const data = exportData();
     const timestamp = new Date().toISOString().slice(0, 10);
@@ -182,7 +162,7 @@ export default function Home() {
           } else {
             alert('导入失败，请检查文件格式。');
           }
-        } catch (error) {
+        } catch {
           alert('读取文件失败。');
         }
       }
@@ -199,8 +179,6 @@ export default function Home() {
       {/* Sidebar */}
       <Sidebar 
         onNewPrompt={handleNewPrompt}
-        onNewFolder={handleNewFolder}
-        onNewTag={handleNewTag}
       />
 
       {/* Main Content */}

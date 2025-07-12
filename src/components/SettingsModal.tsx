@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { X, Settings, Trash2, Plus, Send, CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { X, Settings, Send, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { getFeishuService } from '@/lib/feishu';
 import { cn } from '@/lib/utils';
 

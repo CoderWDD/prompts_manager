@@ -79,8 +79,7 @@ export class StorageService {
   static async getSettings(): Promise<AppSettings | undefined> {
     const result = await db.settings.get(1);
     if (result) {
-      const { id, ...settings } = result;
-      return settings;
+      return result;
     }
     return undefined;
   }
